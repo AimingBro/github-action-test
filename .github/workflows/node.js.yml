@@ -22,7 +22,6 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            ls -a
             cd github-action-test
             git pull origin main
             npm i
