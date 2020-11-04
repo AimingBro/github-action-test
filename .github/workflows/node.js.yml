@@ -26,6 +26,7 @@ jobs:
             cd github-action-test
             git pull origin main --force
             npm i
+            pm2 reload app
           host: ${{secrets.SERVER_HOST}}
           user: ${{secrets.SERVER_ID}}
           pass: ${{secrets.SERVER_PW}}
