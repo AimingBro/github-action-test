@@ -10,25 +10,25 @@ on:
     branches: [ main ]
 
 jobs:
+  # This workflow contains a single job called "build"
   build:
-
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
-
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - uses: actions/checkout@v2
-    - name: deploy
-      uses: fifsky/ssh-action@master
-      with:
-        command: |
-          ls -a
-          cd github-action-test
-          git pull
-          npm i
-          npm run dev
-        host: ${{secrets.SERVER_HOST}}
-        user: ${{secrets.SERVER_ID}}
-        pass: ${{secrets.SERVER_PW}}
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: ls -a via ssh
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            ls -a
+            cd github-action-test
+            git pull origin main
+            npm i
+            npm run dev
+          host: ${{secrets.SERVER_HOST}}
+          user: ${{secrets.SERVER_ID}}
+          pass: ${{secrets.SERVER_PW}}
