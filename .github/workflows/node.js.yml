@@ -24,7 +24,7 @@ jobs:
           command: |
             ls -a
             cd github-action-test
-            git pull origin main --force
+            git pull origin main
             npm i
             pm2 reload app
           host: ${{secrets.SERVER_HOST}}
